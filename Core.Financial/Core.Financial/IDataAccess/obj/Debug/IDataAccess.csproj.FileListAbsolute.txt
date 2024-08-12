@@ -1,0 +1,13 @@
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\bin\Debug\IDataAccess.dll
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\bin\Debug\IDataAccess.pdb
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\bin\Debug\Common.dll
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\bin\Debug\Interfaces.dll
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\bin\Debug\Utilities.dll
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\bin\Debug\System.Net.Http.Formatting.dll
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\bin\Debug\Interfaces.pdb
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\bin\Debug\Utilities.pdb
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\obj\Debug\IDataAccess.csproj.AssemblyReference.cache
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\obj\Debug\IDataAccess.csproj.CoreCompileInputs.cache
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\obj\Debug\IDataAccess.csproj.CopyComplete
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\obj\Debug\IDataAccess.dll
+H:\Repositorio\CCAL\Core.Financial\Core.Financial\IDataAccess\obj\Debug\IDataAccess.pdb

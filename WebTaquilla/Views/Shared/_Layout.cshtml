@@ -1,0 +1,56 @@
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <partial name="_Head" />
+    @RenderSection("HeadBlock", required: false)
+    @RenderSection("AdditionalHeadContent", false)
+    @if (IsSectionDefined("Styles"))
+    {@RenderSection("Styles", required: false)}
+</head>
+<body>
+
+    <!-- Skin configuration box -->
+    <!-- <partial name="_SkinConfig" /> -->
+    <!-- Wrapper-->
+    <div id="wrapper" class="@Html.PageClass()">
+
+        <!-- Navigation -->
+        <partial name="NavigationMenu" />
+        @*<partial name="_Navigation" />*@
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg @ViewBag.SpecialClass">
+
+            <!-- Top Navbar -->
+            <partial name="_TopNavbar" />
+
+
+            <input type="hidden" id="RequestVerificationToken"
+                   name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">
+            <!-- Main view  -->
+            @RenderBody()
+
+            <!-- Footer -->
+            @*<partial name="_Footer" />*@
+
+        </div>
+        <!-- End page wrapper-->
+        <!-- Right Sidebar -->
+        <partial name="_RightSidebar" />
+
+    </div>
+    <!-- End wrapper-->
+
+    @RenderSection("toast", required: false)
+
+    <partial name="_ScriptsBasePlugins" />
+    @RenderSection("scripts", required: false)
+</body>
+</html>

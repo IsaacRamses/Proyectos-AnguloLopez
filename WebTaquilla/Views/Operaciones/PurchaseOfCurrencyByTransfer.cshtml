@@ -1,0 +1,185 @@
+﻿@{
+    ViewData["Title"] = "Compra de divisa por Transferencia";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Compra de divisa por Transferencia</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                Operaciones de Negocio
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Compora de divisa por Transferencia</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget style1 lazur-bg">
+            Esta vista se generara una orden al cajero  para realizar esta transacción en caja  de compra de divisa
+        </div>
+    </div>
+</div>
+
+<div id="smartwizard">
+    <ul class="nav">
+        <li>
+            <a class="nav-link" href="#step-1">
+                <span class="step-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <span class="step-title">Busqueda</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-2">
+                <span class="step-icon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                <span class="step-title">Remitente</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-3">
+                <span class="step-icon"><i class="fa fa-database" aria-hidden="true"></i></span>
+                <span class="step-title">Destinatario</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-4">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Data de la Transferencia</span>
+            </a>
+        </li>
+         <li>
+            <a class="nav-link" href="#step-5">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Data Banco Intermediario</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-6">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Data Solicitud</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-7">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Calculo Solicitud</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="step-1" class="tab-pane" role="tabpanel">
+            <partial name="../Generales/_SearchClient"  />
+        </div>
+        <div id="step-2" class="tab-pane" role="tabpanel">
+            <partial name="../Generales/_StatusClient" />
+        </div>
+        <div id="step-3" class="tab-pane" role="tabpanel">
+            <div>
+                <form id="RecipientDataForTheRequest">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="">Tipo de Documento</label>
+                            <select asp-items="ViewBag.ListaTiposDeIdentidadDes" id="BeneficiaryType" name="BeneficiaryType" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Número de Identidad</label>
+                            <input type="text" class="form-control" placeholder="Número de Identificación" maxlength="15" onfocus="onlyNumber(this.id)" autocomplete="off" aria-label="cedulaBeneficiario" aria-describedby="basic-addon1" name="cedulaBeneficiario" id="cedulaBeneficiario">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Nombres y Apellidos</label>
+                            <input type="text" id="nombreBeneficiario" name="nombreBeneficiario" class="form-control" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Correo Electrónico</label>
+                            <input type="email" id="EmailBeneficiario" name="EmailBeneficiario" onfocus="validateEmail(this.val)" class="form-control" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Teléfono</label>
+                            <input type="tel" id="TelBeneficiaio" name="TelBeneficiaio" maxlength="15" onfocus="onlyNumber(this.id)" class="form-control" autocomplete="off" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="step-4" class="tab-pane" role="tabpanel">
+            <div id="DetailTransfer">
+                <form id="DataTransfer">
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="">País Destino</label>
+                            <select asp-items="ViewBag.ListaPaisesEnvios" id="PaisDestino" name="PaisDestino" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                         <div class="form-group col-md-6 mb-3">
+                            <label for="">Nombre del Banco</label>
+                            <input type="text" id="nombreBancoDestino" name="nombreBancoDestino" class="form-control" maxlength="100" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="">Número de Cuenta</label>
+                            <input type="text" id="numeroCuentaDestino" name="numeroCuentaDestino" onfocus="onlyNumber(this.id)" class="form-control" maxlength="20" title="20 dígitos" autocomplete="off" />
+                        </div>                  
+                         <div class="form-group col-md-6 mb-3">
+                            <label for="">ABA</label>
+                            <input type="text" id="aba" name="aba" onfocus="onlyNumber(this.id)" class="form-control"  maxlength="9" title="9 dígitos" autocomplete="off" />
+                        </div>
+                         <div class="form-group col-md-6 mb-3">
+                            <label for="">SWIFT</label>
+                            <input type="text" id="swift" name="swift" onfocus="onlyNumber(this.id)" class="form-control"  maxlength="11" title="Máximo 20 dígitos" autocomplete="off" />
+                        </div>                     
+                         <div class="form-group col-md-6 mb-3">
+                            <label for="">Dirección del Banco</label>
+                            <textarea type="text" id="direccionBancoDestino" name="direccionBancoDestino" rows="3" class="form-control"  maxlength="100" title="Máximo 20 dígitos" autocomplete="off"></textarea>
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="">Observaciones</label>
+                            <textarea type="text" id="observaciones" name="observaciones" rows="3" class="form-control"  maxlength="200" title="Máximo 20 dígitos" autocomplete="off" ></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="step-5" class="tab-pane" role="tabpanel">
+            <div id="DetailBankIntermediary">
+                <form id="DataBankIntermediary">
+                    <div class="form-row">
+                         <div class="form-group col-md-6 mb-3">
+                            <label for="">Nombre del Banco</label>
+                            <input type="text" id="bancoIntermediario" name="bancoIntermediario" class="form-control" maxlength="100" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="">Número de Cuenta</label>
+                            <input type="text" id="numeroCuentaIntermediario" name="numeroCuentaIntermediario" onfocus="onlyNumber(this.id)" class="form-control" maxlength="20" title="Máximo 20 dígitos" autocomplete="off" />
+                        </div>
+                         <div class="form-group col-md-6 mb-3">
+                            <label for="">ABA</label>
+                            <input type="text" id="abaIntermediario" name="abaIntermediario" class="form-control" onfocus="onlyNumber(this.id)"  maxlength="9" title="9 dígitos" autocomplete="off" />
+                        </div>
+                         <div class="form-group col-md-6 mb-3">
+                            <label for="">SWIFT</label>
+                            <input type="text" id="swiftIntermediario" name="swiftIntermediario"  class="form-control" onfocus="onlyNumber(this.id)"  maxlength="11" title="Máximo 20 dígitos" autocomplete="off" />
+                        </div> 
+                         <div class="form-group col-md-6 mb-3">
+                            <label for="">Direccion del Banco</label>
+                            <input type="text" id="direccionBancoIntermediario" name="direccionBancoIntermediario" row="3" class="form-control" placeholder="Dirección Banco" maxlength="100" title="Máximo 20 dígitos" autocomplete="off" />
+                        </div>   
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="step-6" class="tab-pane" role="tabpanel">
+               <partial name="_ReasonForOperation" />
+        </div>
+        <div id="step-7" class="tab-pane" role="tabpanel">
+               <partial name="_OperationDetail" />
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/WebTaquilla/Operaciones/PurchaseOfCurrencyByTransfer.js" asp-append-version="true"></script>
+}

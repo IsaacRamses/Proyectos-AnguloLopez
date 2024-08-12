@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Venta de divisa en efectivo";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Venta de divisa en efectivo</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                Operaciones de Negocio
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Venta de divisa en efectivo</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget style1 lazur-bg">
+            Esta vista se generara una orden al cajero para realizar esta transacción en caja  de venta de divisa
+        </div>
+    </div>
+</div>
+
+<div id="smartwizard">
+    <ul class="nav">
+        <li>
+            <a class="nav-link" href="#step-1">
+                <span class="step-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <span class="step-title">Busqueda</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-2">
+                <span class="step-icon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                <span class="step-title">Cuenta Usuario</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-3">
+                <span class="step-icon"><i class="fa fa-database" aria-hidden="true"></i></span>
+                <span class="step-title">Datos Solicitud</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-4">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Calculo Solicitud</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="step-1" class="tab-pane" role="tabpanel">
+           <partial name="../Generales/_SearchClient"  />
+        </div>
+        <div id="step-2" class="tab-pane" role="tabpanel">
+           <partial name="../Generales/_StatusClient" />
+        </div>
+        <div id="step-3" class="tab-pane" role="tabpanel">
+             <partial name="_ReasonForOperation" />
+        </div>
+        <div id="step-4" class="tab-pane" role="tabpanel">
+            <partial name="_OperationDetail" />
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/WebTaquilla/Operaciones/SaleOfCurrencyInCash.js" asp-append-version="true"></script>
+}

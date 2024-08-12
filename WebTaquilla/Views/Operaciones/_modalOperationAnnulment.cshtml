@@ -1,0 +1,38 @@
+﻿
+<div class="modal fade" id="modalOperation" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                <h5 class="modal-title" id="modalTitle">Solicitud de Anulación</h5>
+            </div>
+                <div class="modal-body">
+                    <form id="formAnnulment">
+                        <div class="ibox-content">
+                            <input type="text" id="IdOrden" hidden="hidden" />
+                            <input type="text" id="IdOperacion" hidden="hidden" />
+                            <input type="text" id="StatusOrderId" hidden="hidden" />
+                            <input type="text" id="StatusOperacionId" hidden="hidden" />
+                            <input type="text" id="TableId" hidden="hidden" />
+                        <div class="col-sm-12" id="divMotivosAnulacion">
+                                    <div class="form-group">
+                                        <label>Motivo de Anulación</label>
+                                        <select asp-items="ViewBag.ListaMotivosAnulacion" id="ListMotivosAnulacion" name="ListMotivosAnulacion" class="form-control"></select>                               
+                                    </div>
+                                </div>          
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>Observación</label>
+                                        <textarea class="form-control" id="AnnulObservacion" name="AnnulObservacion" maxlength="500" rows="5" autocomplete="off"></textarea>
+                                    </div>
+                                </div>
+                        </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="CleanInput()" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="savedOperation" onclick="SaveAnnulment()" class="btn btn-primary">Guardar</button>
+                </div>
+        </div>
+    </div>
+</div>

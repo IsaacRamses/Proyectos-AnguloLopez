@@ -1,0 +1,69 @@
+﻿<div class="modal fade" id="modalDetailAnnulment"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+
+        <div class="modal-content" style="width: 130%;">
+            <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                <h5 class="modal-title" id="modalTitle">Solicitud de Anulación</h5>
+            </div>
+            <div class="modal-body">
+                    <div class="ibox-content">
+                    <fieldset>
+                        <div class="row">
+                            <section class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nombre Remitente</label>
+                                    <input type="text" class="form-control" id="NomRem" disabled="disabled" />
+                                </div>
+                            </section>
+
+                            <section class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nro. Documento</label>
+                                    <input type="text" class="form-control" id="Cirem" disabled="disabled" />
+                                </div>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <section class="col-md-12">
+                                <div class="form-group">
+                                    <label>Operación</label>
+                                    <input type="text" class="form-control" id="Operacion" disabled="disabled" />
+                                </div>
+                            </section>
+
+                            <section class="col-md-6">
+                                <div class="form-group">
+                                    <label>Monto</label>
+                                    <input type="text" class="form-control" id="Monto" disabled="disabled" />
+                                </div>
+                            </section>
+                             <section class="col-md-6">
+                                <div class="form-group">
+                                    <label>Motivo de Anulacion</label>
+                                    <input type="text" class="form-control" id="ReasonAnnulment" disabled="disabled" />
+                                </div>
+                            </section>
+                             <section class="col-md-12">
+                                <div class="form-group">
+                                    <label>Observación de la Solicitud</label>
+                                    <textarea class="form-control" id="AnnulmentObservation" disabled="disabled" rows="3"></textarea>
+                                </div>
+                            </section>
+                             <section class="col-md-12">
+                                <div class="form-group">
+                                <label>Observación</label>
+                                <textarea class="form-control" id="Observacion" name="Observacion" maxlength="500" rows="2" autocomplete="off"></textarea>
+                            </div>
+                            </section>
+                        </div>
+                    </fieldset>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="CleanInput()" data-dismiss="modal">Cerrar</button>
+                <button type="button" onclick="AproveAnnulment(true)" class="btn btn-primary">Aprobar</button>
+                <button type="button" onclick="AproveAnnulment(false)" class="btn btn-danger">Rechazar</button>
+            </div>
+        </div>
+    </div>
+</div>

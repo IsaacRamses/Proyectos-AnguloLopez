@@ -1,0 +1,93 @@
+﻿   <div class="form-row">
+                        <div class="form-group col-md-6 offset-3">
+                            <label for="">Método de Pago</label>
+                              <select asp-items="ViewBag.ListaTipoPagosGive" id="TipoPago_Purchase" name="TipoPago_Purchase" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-md-2" style="text-align: center;margin-top: auto; display:none" id="divAddCashCurrencyGive">
+                            <button class="btn btn-primary" type="button" id="addGiveCurrency">Dar Efectivo</button>
+                        </div>                  
+                    </div>   
+                <div id="divMethodGivePay">
+                    <form id="FormMethodGivePay">
+                    <div class="form-row" id="divCurrencyGivePay">
+                         <div class="col-md-4" id="divListBancosGive" style="display:none" >
+                            <label for="">Bancos</label>
+                            <select id="ListBancos_Purchase" name="ListBancos_Purchase" class="form-control">
+                                <option value="">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3" id="divNumTicketGive" style="display:none">
+                            <label for="">Nro. Cuenta</label>
+                <input id="NumCuenta_Purchase" name="NumCuenta_Purchase" onpaste="return false" onfocus="onlyNumber(this.id)" maxlength="20" autocomplete="off" type="text" class="form-control " />
+                        </div>
+                         <div class="col-md-4" id="divTelfGive" style="display:none" >
+                            <label for="">Nro. de Telefono</label>
+                <input type="text" class="form-control" id="telphone_Purchase" onfocus="onlyNumber(this.id)" name="telphone_Purchase" placeholder="Telefono">
+                        </div>
+                        <div class="col-md-4 mb-3" id="divMontoGive" style="display:none">
+                            <label for="">Monto</label>
+                            <div class="input-group">
+                        <input id="Monto_Purchase" name="Monto_Purchase" autocomplete="off" type="text" class="form-control " />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="addCurrencyToGivePay">Agregar</button>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                 </form>
+                <div>
+                    <div class="panel-body">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="table-responsive-lg">
+                                    <table id="tblCurrencyToGive_Purchase"
+                                           data-toggle="table"
+                                           data-search="false"
+                                           data-url=""
+                                           data-unique-id="Id"
+                                           data-sort-name="DenominacionTemp"
+                                           data-sort-order="asc"
+                                           data-page-size="5"
+                                           data-page-list="[5, 10, 25, 50, 100, 200, All]"
+                                           data-pagination="true"
+                                           data-response-handler="responseHandler"
+                                           data-advanced-search="true"
+                                           data-id-table="advancedTable"
+                                           data-show-footer="true"
+                                           data-ajax=""
+                                           class="table table-striped table-bordered table-responsive-lg">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="MetodoPagoDes"  data-halign="center" data-align="center">
+                                                    Método de Pago
+                                                </th>
+                                                <th data-field="MonedaTemp"   data-halign="center" data-align="center" autocomplete="off">
+                                                    Moneda
+                                                </th>
+                                                <th data-field="TipoDenominacionTemp"  data-halign="center" data-align="center" autocomplete="off">
+                                                    Categoria
+                                                </th>
+                                                <th data-field="DenominacionTemp"  data-footer-formatter="idFormatterDif" data-halign="center" data-align="center" autocomplete="off">
+                                                    Denominación
+                                                </th>
+                                                <th data-field="Cantidad" data-footer-formatter="priceFormatterDifGive_Purchase" data-halign="center" data-align="center" autocomplete="off">
+                                                    Cantidad
+                                                </th>
+                                                <th data-field="Referencia"  data-footer-formatter="idFormatter" data-halign="center" data-align="center" autocomplete="off">
+                                                    Referencia
+                                                </th>
+                                                <th data-field="MontoTotal" data-footer-formatter="priceFormatterGive_Purchase" data-sortable="true" data-sort-order="desc" data-halign="center" data-align="center">
+                                                    Total
+                                                </th>
+                                                <th data-halign="center" data-align="center" data-formatter="operateFormatterRemoveGivePurchase" data-events="operateEventsRemovePurchase">
+
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

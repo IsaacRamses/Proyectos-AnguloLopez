@@ -1,0 +1,36 @@
+﻿           <div id="DetailDebtsToPay">
+                <form id="OrdenPago">
+                    <div class="form-row" id="FinancialData">
+                        <div class="form-group col-md-6">
+                            <label for="">Tasa de Operación</label>
+                            <input id="Tasa" name="Tasa" type="hidden" value="@ViewBag.tasa" readonly />
+                             <input id="TasaCambio" name="TasaCambio" type="text" class="form-control montos" value="@ViewBag.tasa" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Monto Operación</label>
+                            <input id="montoOperacion" name="montoOperacion" type="text" class="form-control montos" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Comisión 5%</label>
+                            <input id="ComisionOperacion" name="ComisionOperacion" type="text" class="form-control montos" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Monto Total Compra</label>
+                            <input id="MontoTotal" name="MontoTotal" type="text" class="form-control montos" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Monto a Recibir (Cliente)</label>
+                            <input id="montoCliente" name="montoCliente" type="text" class="form-control montos" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Monto a Pagar a CCAL</label>
+                            <input id="MontoPagar" name="MontoPagar" type="text" class="form-control montos" readonly />
+                        </div>
+                         <div class="form-group col-md-6" style="display:none">
+                            <label for="">Tasa Conversion</label>
+                            <input id="TasaConversion" name="TasaConversion" type="hidden" value="" readonly />
+                        </div>
+                    </div>
+
+                </form>
+            </div>

@@ -1,0 +1,229 @@
+﻿@{
+    ViewData["Title"] = "Venta de divisa para encomienda electronica";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Venta de divisa para encomienda electronica</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                Operaciones de Negocio
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Venta de divisa para encomienda electronica</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget style1 lazur-bg">
+            Esta vista se generara una orden al cajero  para realizar esta transacción en caja  de venta de divisa
+        </div>
+    </div>
+</div>
+
+<div id="smartwizard">
+    <ul class="nav">
+        <li>
+            <a class="nav-link" href="#step-1">
+                <span class="step-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <span class="step-title">Busqueda</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-2">
+                <span class="step-icon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                <span class="step-title">Remitente</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-3">
+                <span class="step-icon"><i class="fa fa-database" aria-hidden="true"></i></span>
+                <span class="step-title">Destinatario</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-4">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Destino</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-5">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Data Solicitud</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-6">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Calculo Solicitud</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="step-1" class="tab-pane" role="tabpanel">
+             <partial name="../Generales/_SearchClient"  />
+        </div>
+        <div id="step-2" class="tab-pane" role="tabpanel">
+              <partial name="../Generales/_StatusClient" />
+        </div>
+        <div id="step-3" class="tab-pane" role="tabpanel">
+            <div>
+                <form id="RecipientDataForTheRequest">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="">Tipo de Documento</label>
+                            <select asp-items="ViewBag.ListaTiposDeIdentidad" id="BeneficiaryType" name="BeneficiaryType" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Número de Identidad</label>
+                            <input type="text" class="form-control" placeholder="Número de Identificación" maxlength="15" onfocus="onlyNumber(this.id)" autocomplete="off" aria-label="cedulaBeneficiario" aria-describedby="basic-addon1" name="cedulaDestinatario" id="cedulaDestinatario">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label>Primer Nombre</label>
+                            <input type="text" id="nombreDestinatario1" name="nombreDestinatario1" class="form-control" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Segundo Nombre</label>
+                            <input type="text" id="nombreDestinatario2" name="nombreDestinatario2" class="form-control" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Primer Apellido</label>
+                            <input type="text" id="ApellidoDestinatario1" name="ApellidoDestinatario1" class="form-control" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label>Segundo Apellido</label>
+                            <input type="text" id="ApellidoDestinatario2" name="ApellidoDestinatario2" class="form-control" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Correo Electrónico</label>
+                            <input type="email" id="EmailBeneficiario" name="EmailBeneficiario" onfocus="validateEmail(this.val)" class="form-control" autocomplete="off" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Teléfono</label>
+                            <input type="tel" id="TelBeneficiaio" name="TelBeneficiaio"  onfocus="onlyNumber(this.id)" class="form-control" maxlength="15" autocomplete="off" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="step-4" class="tab-pane" role="tabpanel">
+            <div id="">
+                <form id="DataDestino">
+                    <div class="form-row">
+                        <div class="form-group col-md-6 mb-3">
+                            <label for="">País Destino</label>
+                            <select asp-items="ViewBag.ListaPaisesEnvios" id="PaisDestino" name="PaisDestino" class="form-control"></select>
+                            </div>
+                        <div class="form-group col-md-6" id="divCorresponsal" style="display:none">
+                            <label for="idCorresponsal">Corresponsal</label>
+                            <select id="idCorresponsal" name="idCorresponsal" class="form-control">
+                                <option value="" selected="selected">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6" id="divModalidadPago" style="display:none">
+                            <label>Modalidad de Pago</label>
+                            <select id="ModalidadPago" name="ModalidadPago" class="form-control">
+                                <option value="" selected="selected">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6 mb-3" id="divCiudadDestino" style="display:none">
+                                <label for="">Ciudad Destino</label>
+                                <select id="CiudadDestino" name="CiudadDestino" class="form-control">
+                                    <option value="" selected="selected">Seleccione</option>
+                                </select>
+                            </div>
+                        <div class="form-group col-md-12 mb-3" id="divOficinaDestino" style="display:none">
+                                <label for="">Oficina Destino</label>
+                                <select id="OficinaDestino" name="OficinaDestino" class="form-control">
+                                    <option value="" selected="selected">Seleccione</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6 mb-3" id="divBancoCuenta" style="display:none">
+                                <label for="">Banco de Destino</label>
+                               <select id="BancoCuenta" name="BancoCuenta" class="form-control">
+                                    <option value="0" selected="selected">Seleccione...</option>
+                                </select>
+                            </div>
+                        <div class="form-group col-md-6 mb-3" id="divTypeAccount" style="display:none">
+                                <label for="BancoCuenta">Tipo de Cuenta</label>
+                                <select id="TypeAccount" name="TypeAccount" class="form-control input-sm">
+                                    <option value="">Seleccione</option>
+                                    <option value="A">Ahorro</option>
+                                    <option value="C">Corriente</option>
+                                </select>
+                            </div>
+                        <div class="form-group col-md-6 mb-3" id="divNumeroCuentaDes" style="display:none">
+                                <label for="">Número de Cuenta de Destino</label>
+                               <input  id="numeroCuentaDestino" name="numeroCuentaDestino" onfocus="onlyNumber(this.id)" type="text" class="form-control" maxlength="20" autocomplete="off" /> 
+                            </div>
+                        <div class="form-group col-md-6 mb-3" id="divDireccionBanco" style="display:none">
+                                <label for="DireccionBanco">Ciudad Beneficiario</label>
+                            <textarea class="form-control input-sm" id="DireccionBanco" name="DireccionBanco" autocomplete="off"></textarea>
+                            </div>
+                    </div>                 
+                </form>
+            </div>
+        </div>
+        <div id="step-5" class="tab-pane" role="tabpanel">
+              <partial name="_ReasonForOperation" />
+        </div>
+        <div id="step-6" class="tab-pane" role="tabpanel">
+            <div id="DetailDebtsToPay">
+                <form id="OrdenPago">
+                    <div class="form-row" id="FinancialData">
+                        <div class="form-group col-md-6">
+                            <label for="">Tasa Venta</label>
+                            <input id="Tasa" name="Tasa" type="hidden"  value="@ViewBag.tasa" readonly />
+                            <input id="TasaCambio" name="TasaCambio" type="text" class="form-control montos" value="@ViewBag.tasa" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Monto Operación</label>
+                            <input id="montoOperacion" name="montoOperacion" type="text" class="form-control montos" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Comisión 4%</label>
+                            <input id="ComisionOperacion" name="ComisionOperacion" type="text" class="form-control montos" readonly />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Monto Total Compra</label>
+                            <input id="MontoTotal" name="MontoTotal" type="text" class="form-control montos" readonly />
+                        </div>
+                          <div class="form-group col-md-6">
+                            <label for="">Monto de Transaccion $</label>
+                            <input id="montoCliente" name="montoCliente" type="text" class="form-control montos" readonly />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="">Tarifa del Corresponsal $</label>
+                            <input id="TarifaUS" name="TarifaUS" type="text" class="form-control montos" readonly />
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="">Monto a Recibir  (Cliente) $</label>
+                            <input id="MontoRecibirCorres" name="MontoRecibirCorres" type="text" class="form-control montos" readonly />
+                        </div>
+                   
+                        <div class="form-group col-md-6">
+                            <label for="">Monto a Pagar a CCAL</label>
+                            <input id="MontoPagar" name="MontoPagar" type="text" class="form-control montos" readonly />
+                        </div>
+                         <div class="form-group col-md-6" style="display:none">
+                            <label for="">Tasa Conversion</label>
+                            <input id="TasaConversion" name="TasaConversion" type="hidden" value="" readonly />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/WebTaquilla/Operaciones/SaleOfCurrencyForElectronicParcel.js" asp-append-version="true"></script>
+}

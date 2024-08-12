@@ -1,0 +1,108 @@
+﻿   <div class="form-row">
+                        <div class="form-group col-md-6 offset-3">
+                            <label for="">Método de Pago</label>
+                              <select asp-items="ViewBag.ListaTipoPagos" id="TipoPago" name="TipoPago" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-md-2" style="text-align: center;margin-top: auto;" >
+                            <button class="btn btn-primary" disabled type="button" id="addGiveChangeCurrency">Dar Cambio</button>
+                        </div>                  
+                    </div>   
+                <div id="divMethodPay">
+                    <form id="FormMethodPay">
+                    <div class="form-row" id="divCurrencyPay">
+                         <div class="col-md-4" id="divListBancos" style="display:none" >
+                            <label for="">Bancos</label>
+                            <select id="ListBancos_Sale" name="ListBancos_Sale" class="form-control">
+                                 <option value="">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3" id="divNumTicket" style="display:none">
+                            <label for="">Número de Ticket (Referencia)</label>
+                            <input id="NumTicket" name="NumTicket" onfocus="onlyNumber(this.id)" maxlength="20" autocomplete="off" type="text" class="form-control " />
+                        </div>
+                        <div class="col-md-4 mb-3" id="divMonto" style="display:none">
+                            <label for="">Monto</label>
+                            <div class="input-group">
+                                <input id="Monto" name="Monto" autocomplete="off" type="text"  class="form-control " />
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="addCurrencyToPay">Agregar</button>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-md-4 mb-3" id="divTipoDenominacion" style="display:none">
+                            <label for="">Tipo de Denominación</label>
+                            <select asp-items="ViewBag.ListaTypeDenominations" id="TypeDenominations_Sale" name="TypeDenominations_Sale" class="form-control"></select>
+                        </div>
+                        <div class="col-md-4 mb-3" id="divDenominacion" style="display:none">
+                            <label for="">Denominaciones</label>
+                            <select id="denominations_Sale" name="denominations_Sale" class="form-control">
+                                <option value="">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3" id="divCantidad" style="display:none">
+                            <label for="">Cantidad</label>
+                            <div class="input-group">
+                        <input type="text" class="form-control" maxlength="6" onfocus="onlyNumber(this.id)" id="Quanty_Sale" name="Quanty_Sale" placeholder="Cantidad">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="addCurrencyToRecive_Sale">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </form>
+
+                <div>
+                    <div class="panel-body">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="table-responsive-lg">
+                                    <table id="tblCurrencyToRecive"
+                                           data-toggle="table"
+                                           data-search="false"
+                                           data-url=""
+                                           data-sort-name="DenominacionTemp"
+                                           data-sort-order="asc"
+                                           data-page-size="5"
+                                           data-page-list="[5, 10, 25, 50, 100, 200, All]"
+                                           data-pagination="true"
+                                           data-response-handler="responseHandler"
+                                           data-advanced-search="true"
+                                           data-id-table="advancedTable"
+                                           data-show-footer="true"
+                                           data-ajax=""
+                                           class="table table-striped table-bordered table-responsive-lg">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="MetodoPagoDes"  data-halign="center" data-align="center">
+                                                    Método de Pago
+                                                </th>
+                                                <th data-field="MonedaTemp"   data-halign="center" data-align="center" autocomplete="off">
+                                                    Moneda
+                                                </th>
+                                                <th data-field="TipoDenominacionTemp"  data-halign="center" data-align="center" autocomplete="off">
+                                                    Categoria
+                                                </th>
+                                                <th data-field="DenominacionTemp"  data-footer-formatter="idFormatterDif" data-halign="center" data-align="center" autocomplete="off">
+                                                    Denominación
+                                                </th>
+                                                <th data-field="Cantidad"  data-footer-formatter="priceFormatterDif" data-halign="center" data-align="center" autocomplete="off">
+                                                    Cantidad
+                                                </th>
+                                                <th data-field="Referencia"  data-footer-formatter="idFormatter" data-halign="center" data-align="center" autocomplete="off">
+                                                    Referencia
+                                                </th>
+                                                <th data-field="MontoTotal" data-footer-formatter="priceFormatter" data-sortable="true" data-sort-order="desc" data-halign="center" data-align="center">
+                                                    Total
+                                                </th>
+                                                <th data-halign="center" data-align="center" data-formatter="operateFormatterRemove" data-events="operateEventsRemove">
+
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

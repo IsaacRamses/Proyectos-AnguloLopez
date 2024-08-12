@@ -1,0 +1,81 @@
+﻿ 
+                <div id="divPurchaseMethodPay">
+                    <div class="form-group" style="margin-top: auto;">
+                        <button class="btn btn-primary" disabled type="button" id="addGiveChangeCurrency_Purchase">Dar Cambio</button>
+                    </div>
+                <form id="FormPurchaseRecivePay">
+                    <div class="form-row" id="divPurchaseCurrencyPay">                
+                        <div class="col-md-4 mb-3" id="divTipoDenominacion">
+                            <label for="">Tipo de Denominación</label>
+                            <select asp-items="ViewBag.ListaTypeDenominations" id="TypeDenominations_Purchase" name="TypeDenominations_Purchase" class="form-control"></select>
+                        </div>
+                        <div class="col-md-4 mb-3" id="divDenominacion">
+                            <label for="">Denominaciones</label>
+                            <select id="denominations_Purchase" name="denominations_Purchase" class="form-control">
+                                <option value="">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3" id="divCantidad" >
+                            <label for="">Cantidad</label>
+                            <div class="input-group">
+                    <input type="text" class="form-control" maxlength="6" onfocus="onlyNumber(this.id)" id="Quanty_Purchase" name="Quanty_Purchase" placeholder="Cantidad">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="addCurrencyToRecive_Purchase">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </form>
+
+                <div>
+                    <div class="panel-body">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="table-responsive-lg">
+                                    <table id="tblCurrencyToRecive_Purchase"
+                                           data-toggle="table"
+                                           data-search="false"
+                                           data-url=""
+                                           data-unique-id="CashierSummaryId"
+                                           data-sort-name="DenominacionTemp"
+                                           data-sort-order="asc"
+                                           data-page-size="5"
+                                           data-page-list="[5, 10, 25, 50, 100, 200, All]"
+                                           data-pagination="true"
+                                           data-response-handler="responseHandler"
+                                           data-advanced-search="true"
+                                           data-id-table="advancedTable"
+                                           data-show-footer="true"
+                                           data-ajax=""
+                                           class="table table-striped table-bordered table-responsive-lg">
+                                        <thead>
+                                            <tr> 
+                                                <th data-field="MetodoPagoDes"  data-halign="center" data-align="center">
+                                                    Método de Pago
+                                                </th>
+                                                <th data-field="MonedaTemp"   data-halign="center" data-align="center" autocomplete="off">
+                                                    Moneda
+                                                </th>
+                                                <th data-field="TipoDenominacionTemp"  data-footer-formatter="idFormatterDif" data-halign="center" data-align="center" autocomplete="off">
+                                                    Categoria
+                                                </th>
+                                                <th data-field="DenominacionTemp" data-footer-formatter="priceFormatterDif_Purchase"  data-halign="center" data-align="center" autocomplete="off">
+                                                    Denominación
+                                                </th>
+                                                <th data-field="Cantidad"   data-footer-formatter="idFormatter" data-halign="center" data-align="center" autocomplete="off">
+                                                    Cantidad
+                                                </th>
+                                                  <th data-field="CodeCurrencyTemp"  data-footer-formatter="priceFormatter_Purchase" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                                    Código
+                                                </th>
+                                                 <th data-halign="center" data-align="center" data-formatter="operateFormatterRemoveDenominationsPurchase" data-events="operateEventsRemovePurchase">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

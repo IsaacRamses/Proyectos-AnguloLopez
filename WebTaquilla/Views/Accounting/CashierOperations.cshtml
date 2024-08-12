@@ -1,0 +1,429 @@
+﻿@{
+    ViewData["Title"] = "Accounting";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Operaciones</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                Caja
+            </li>
+            <li class="breadcrumb-item active">
+                Cajero
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Operaciones</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget style1 lazur-bg">
+            Esta vista se visualizan todas las operaciones de compra y venta de divisas
+        </div>
+    </div>
+</div>
+
+ <div id="smartwizard">
+    <ul class="nav">
+        <li>
+            <a class="nav-link" href="#step-1">
+                <span class="step-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+                <span class="step-title">Busqueda</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-2">
+                <span class="step-icon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+               <span class="step-title">Cuenta Usuario</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-3">
+                <span class="step-icon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                <span class="step-title">Operaciones Disponibles</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-4">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Monto a Recibir</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="#step-5">
+                <span class="step-icon"><i class="fa fa-calculator" aria-hidden="true"></i></span>
+                <span class="step-title">Monto a Entregar </span>
+            </a>
+        </li>
+         <li>
+            <a class="nav-link" href="#step-6">
+                <span class="step-icon"><i class="fa fa-database" aria-hidden="true"></i></span>
+                <span class="step-title">Procesar Operación</span>
+            </a>
+        </li>
+    </ul>
+    <input type="hidden" id="tasaVenta" value="@ViewBag.TasaVenta" />
+    <input type="hidden" id="tasaCompra" value="@ViewBag.TasaCompra" />
+    <input type="hidden" id="CClose" value="@ViewBag.CloseCashier" />
+
+    <div class="tab-content" style="height:auto">
+        <div id="step-1" class="tab-pane" role="tabpanel">
+              <partial name="../Generales/_SearchClient" />
+        </div>
+        <div id="step-2" class="tab-pane" role="tabpanel">
+             <partial name="../Generales/_StatusClient" />
+        </div>
+        <div id="step-3" class="tab-pane" role="tabpanel">
+              <partial name="_CashierOperationsAvailable"/>
+        </div>
+        <div id="step-4" class="tab-pane" role="tabpanel"  style="display:none">
+              <div id="divOperationsSelect">
+                   <div class="form-row">
+                         <div class="form-group col-md-2">
+                            <label for="">Monto a Recibir</label>
+                              <input id="MontoRecibir" name="MontoRecibir" disabled autocomplete="off" type="text"  class="form-control  " style="font-weight: bold;"/>
+                        </div>                
+                   </div>  
+                <div id="divSaleOperation" style="display:none">
+                 <partial name="_CashierOperationsSaleRecive"/>
+                </div>
+                <div id="divPurchaseOperation" style="display:none">
+                 <partial name="_CashierOperationsPurchaseRecive"/>
+                </div>
+              </div>
+        </div>
+        <div id="step-5" class="tab-pane" role="tabpanel">
+            <div id="divOperationsSelect_2">
+                 <div class="form-row">
+                         <div class="form-group col-md-2">
+                          <label for="">Monto a Entregar</label>
+                           <input id="MontoEntregar" name="MontoEntregar" disabled autocomplete="off" type="text"  class="form-control  " style="font-weight: bold;"/>
+                        </div>                
+                   </div>
+                <div id="divPurchaseOperation_2" style="display:none">
+                   <div id="PurchaseCash" style="display:none">   
+                      <partial name="_CashierOperationsPurchaseGive"/>               
+                     </div>
+                </div>
+                 <div id="divSaleOperation_2" style="display:none">          
+                     <div id="SaleCash" style="display:none">   
+                      <partial name="_CashierOperationsSaleGive"/>               
+                     </div>
+                     <div id="SaleElectronicParcel" style="display:none">
+                          <h3 class="col-md-6 offset-3"> Es una Operacion Venta de Encomienda Electronica no se requiere entregar la divisa en efectivo.</h3>  
+                     </div>
+                </div>
+            </div>
+        </div>
+        <div id="step-6" class="tab-pane" role="tabpanel">
+             <div id="OperationSummary">
+                <div class="card">
+                    <div class="card-header">
+                        Datos de Operación
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="form-group row col-md-12">
+                                    <div class="col-md-1">
+                                        <div>
+                                            <label for="inputSucursal" class="col-form-label">Sucursal</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <input id="Sucursal" name="Sucursal" type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div>
+                                            <label for="inputFechaEmitido" class="col-form-label">Emitido</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <input id="FechaEmitido" name="FechaEmitido" type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="form-group row col-md-12">
+                                    <div class="col-md-1">
+                                        <div>
+                                            <label for="inputCI" class="col-form-label">Identificación</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <input id="CI" name="CI" type="text" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div>
+                                            <label for="inputNombreCompleto" class="col-form-label">Nombres y Apellidos</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div>
+                                            <input id="NombreCompleto" name="NombreCompleto" type="text" class="form-control montos" readonly />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <div class="card">
+                    <div class="card-header">
+                        Datos Financieros
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="form-group row col-md-12">
+                                    <div id="divTipoOferta" style="display: contents;">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputTipoOferta" class="col-form-label">Tipo de Oferta</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="TipoOferta" name="TipoOferta" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divMotivoOperacion" style="display: contents;">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputMotivoOperacion" class="col-form-label">Motivo Operación</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="MotivoOperacion" name="MotivoOperacion" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="form-group row col-md-12">
+                                    <div id="divTasaFecha" style="display: contents;">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputTasaFecha" class="col-form-label">Fecha</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="TasaFecha" name="TasaFecha" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divTasa" style="display: contents;">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputTasa" class="col-form-label">Tasa</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="Tasa" name="Tasa" type="text" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <br>
+                            <div class="row">
+                                <div class="form-group row col-md-12">
+                                    <div id="divMontoDivisa" style="display: contents;">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputMontoDivisa" id="labelMontoDivisa" class="col-form-label">Monto en </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="MontoDivisa" name="Monto" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divMontoBs" style="display: contents;">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputMontoBs" class="col-form-label">Importe en Bs.</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="MontoBs" name="MontoBs" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="divComisiones" class="form-group row col-md-12">
+                                </div>
+                                <div class="form-group row col-md-12">
+                                    <div id="divMontoTotalBs" style="display: contents;">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inpuMontoTotalBs" id="labelMontoDivisa" class="col-form-label">Total </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="MontoTotalBs" name="MontoTotalBs" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group row col-md-12">
+                                    <div id="divMontoTotalGiveMixed" style="display:none">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputMontoTotalGiveMixed" class="col-form-label">Se Hizo Entrega de </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="MontoTotalGiveMixed" name="MontoTotalGiveMixed" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divMontoTotalBsMixed" style="display:none">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputMontoTotalBsMixed" class="col-form-label">Se pagara en Bolivares</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="MontoTotalBsMixed" name="MontoTotalBsMixed" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group row col-md-12">
+                                    <div id="divMontoTotalPayMixed" style="display:none">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputMontoTotalPayMixed" class="col-form-label">Equivalente a </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="MontoTotalPayMixed" name="MontoTotalPayMixed" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="divTasaMixed" style="display:none">
+                                        <div class="col-md-1">
+                                            <div>
+                                                <label for="inputMontoTotalBsMixed" class="col-form-label">Tasa del Dia</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <input id="TasaMixed" name="TasaMixed" type="text" class="form-control montos" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
+
+<div id="Modals"><partial name="_CashierOperationsModals"/></div>
+<div id="TablesInOut">
+    <div class="table-responsive-lg" id="CashierDetail" style="display:none">
+                      <table id="tblCashierDetail"
+                                           data-toggle="table"
+                                           data-search="false"
+                                           data-url=""
+                                           data-unique-id="CashierSummaryId_"
+                                           data-page-size="10"
+                                           data-response-handler="responseHandler"
+                                           data-advanced-search="true"
+                                           data-id-table="advancedTable"
+                                           data-show-footer="true"
+                                           data-ajax=""
+                                           class="table table-striped table-bordered table-responsive-lg">
+                                        <thead>
+                                            <tr>
+                                            </tr>
+                                        </thead>
+                      </table>
+    </div>
+    <div class="table-responsive-lg" id="Cashier" style="display:none">
+        <table id="tblCashier"
+               data-toggle="table"
+               data-search="false"
+               data-url=""
+               data-unique-id="CashierId"
+               data-page-size="10"
+               data-response-handler="responseHandler"
+               data-advanced-search="true"
+               data-id-table="advancedTable"
+               data-show-footer="true"
+               data-ajax=""
+               class="table table-striped table-bordered table-responsive-lg">
+                    <thead>
+                        <tr>
+                        </tr>
+                    </thead>
+        </table>
+    </div>
+</div>
+
+<div id="divTableCashierMixed">
+    <div class="table-responsive-lg" id="CashierMixed"  style="display:none">
+        <table id="tblCurrencyToGive_Mixed"
+               data-toggle="table"
+               data-search="false"
+               data-url=""
+               data-unique-id="CashierSummaryId"
+               data-page-size="10"
+               data-response-handler="responseHandler"
+               data-advanced-search="true"
+               data-id-table="advancedTable"
+               data-show-footer="true"
+               data-ajax=""
+               class="table table-striped table-bordered table-responsive-lg">
+            <thead>
+                <tr>         
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section Scripts{
+    @*Funciones Generales para el Modulo*@
+    <script src="~/WebTaquilla/Accounting/CashierOperations.js" asp-append-version="true"></script>
+    @*Funciones Para Operaciones de Venta*@
+    <script src="~/WebTaquilla/Accounting/CashierOperationsSale_.js" asp-append-version="true"></script>
+    @*Funciones Para Operaciones de Compra*@
+    <script src="~/WebTaquilla/Accounting/CashierOperationsPurchase_.js" asp-append-version="true"></script>
+    @*Funciones Para Operaciones de Compra*@
+    <script src="~/WebTaquilla/Accounting/CashierOperationsInCurrencyClient_.js" asp-append-version="true"></script>
+}

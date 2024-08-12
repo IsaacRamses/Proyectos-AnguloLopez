@@ -1,0 +1,21 @@
+﻿<div id="DetailDebtsToPay">
+                <form id="DataForTheRequest">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="">Motivo de la Operaci&oacute;n</label>
+                            <select asp-items="ViewBag.ListaMotivosOperacion" id="motivoOferta" name="motivoOferta" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="">Moneda de Operación</label>
+                            <select asp-items="ViewBag.ListaMoneda" id="MonedaVenta" name="MonedaVenta" class="form-control"></select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="">Monto de Operación</label>
+                            <input id="montoOrden" name="montoOrden" type="text" class="form-control montos" placeholder="Monto" autocomplete="off" />
+                        </div>
+                         <div class="form-group col-md-4" style="display:none">
+                             <input id="CodMoneda" name="CodMoneda" type="hidden" class="form-control" readonly />
+                        </div>
+                    </div>
+                </form>
+            </div>

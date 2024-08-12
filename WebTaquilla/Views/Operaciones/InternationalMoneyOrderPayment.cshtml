@@ -1,0 +1,206 @@
+﻿@{
+    ViewData["Title"] = "PAGO DE GIRO INTERNACIONAL";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Pago de Giro Internacional</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                Negocio
+            </li>
+            <li class="breadcrumb-item active">
+                <strong>Pago de Giro Internacional</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget style1 lazur-bg">
+            Esta vista muestra todas las operaciones de  Pago de giro internacional   y Generara una orden al cajero  para realizar esta transacción en caja
+        </div>
+    </div>
+</div>
+
+<div id="FilterPaymentOrder">
+    <form>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Número de Identificación</label>
+                <input type="text" class="form-control" placeholder="Número de Identificación" maxlength="15" onfocus="onlyNumber(this.id)" autocomplete="off" aria-label="Number" aria-describedby="basic-addon1" id="Number">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12 text-right">
+                <button class="btn btn-primary" type="button" onclick="SearchPaymentOrderVentanilla();" id="btnSearch">Buscar</button>
+                <button class="btn btn-secondary" type="button" onclick="CleanFilters();">Limpiar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="tabs-container" id="tabsPrincipal">
+    <div id="tabOperationUsd" class="tab-pane">
+        <div class="panel-body">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="table-responsive-lg">
+                        <div id="toolbar" class="fixed-table-toolbar">
+                            <div class="columns columns-right btn-group pull-right" role="form">
+                                <div class="btn-group">
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                        <i class="glyphicon glyphicon-export"></i><span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="javascript:void(0)" onclick="ExportTable('excel', 'PaymentOrdersNotCanceledDivisa', 'Ordenes no Canceladas')">Excel</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="PaymentOrderVentanilla"
+                               data-toggle="table"
+                               data-search="false"
+                               data-url=""
+                               data-side-pagination="server"
+                               data-pagination="true"
+                               data-response-handler="responseHandler"
+                               data-advanced-search="true"
+                               data-id-table="advancedTable"
+                               data-ajax=""
+                               data-show-export="true"
+                               data-export-data-type="all"
+                               class="table table-striped table-bordered table-responsive-lg">
+                            <thead>
+                                <tr>
+                                    <th data-sortable="true" data-halign="center" data-formatter="operateFormatter" data-events="operateEvents" data-align="center"></th>
+                                    <th data-field="corresponsal" data-sortable="true" data-halign="center" data-align="center">
+                                        Corresponsal
+                                    </th>
+                                    <th data-field="nombres_remitente" data-sortable="true" data-halign="center" data-align="center">
+                                        Nombres y Apellidos
+                                    </th>
+                                    <th data-field="identificacion_cliente" data-sortable="true" data-halign="center" data-align="center">
+                                        Número de Identificación
+                                    </th>
+                                    <th data-field="fecha_operacion" data-sortable="true" data-halign="center" data-align="center" data-formatter="convertDate">
+                                        Fecha Operación
+                                    </th>
+                                    <th data-field="monto" data-sortable="true" data-formatter="FormatMonto" data-halign="center" data-align="center">
+                                        Monto
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="FormPaymentOrder" style="display:none">
+    <div class="panel panel-info">
+        <div class="panel-heading"><i class="fa fa-info-circle"></i> Detalle de la Remesa</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="container">
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="pill" id="DetalleRemesa" href="#Detalle">Detalle de Remesa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" id="BitacoraRemesa" href="#Bitacora">Detalle de Bitácora</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div id="Detalle" class="container tab-pane active">
+                            <br>
+                            <div id="DetailDebtsToPay">
+                                <form id="OrdenPago">
+                                    <div class="form-row">
+                                        <input type="hidden" id="ID_ORDEN" />
+                                        <input type="hidden" id="ID_SOLICITUD" />
+                                        <input type="hidden" id="NUMERO" />
+                                        <input type="hidden" id="MONEDA" />
+                                        <input type="hidden" id="id_corresponsal" />
+                                        <input type="hidden" id="REFERENCIA_ORDEN" />
+                                        <input type="hidden" id="FECHA_FACTURADO" />
+                                        <input type="hidden" id="FACTURADO_POR" />
+                                        <input type="hidden" id="MONTO" />
+
+                                        <div class="col-md-4 mb-3">
+                                            <label>Remitente</label>
+                                            <input type="text" id="nombreRemitente" class="form-control" readonly />
+                                        </div>
+                                        
+                                        <div class="col-md-4 mb-3">
+                                            <label>Nombre y Apellido</label>
+                                            <input type="text" id="nombre" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>Número de Identificación</label>
+                                            <input type="text" id="numeroidentificacion" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label>Fecha de Vencimiento de Documento</label>
+                                            <input type="text" id="fechaVencimientoCI" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationDefault01">Monto Total</label>
+                                            <input type="text" name="AccountTotalAmmountDetail" id="AccountTotalAmmountDetail" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="">Estatus Ficha</label>
+                                            <input type="text" name="nameStatusFicha" id="nameStatusFicha" class="form-control" readonly />
+                                        </div>
+                                    </div>
+                                </form>
+                                <form id="DetailPayment" style="display:none">
+                                    <div class="panel-hdr color-success-600">
+                                        <h3>
+                                            Detalle de Pago
+                                        </h3>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationDefault01">Referencia del Pago</label>
+                                            <input type="text" id="AccountPaymentReferenceDetail" class="form-control" readonly />
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="validationDefault02">Fecha de Pago</label>
+                                            <input type="text" id="AccountPaymentDateDetail" class="form-control" readonly data-formatter="convertDate" />
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="validationDefault02">Observación del Pago</label>
+                                            <textarea class="form-control" id="AccounPaymentObservationDetail" readonly></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form>
+                                    <div class="form-row">
+                                        <button class="btn btn-primary" style="margin-right:4px" id="btnGenerateOrden" type="button" onclick="GenerarOperacionTemp();">Generar Operación</button>
+                                        <button type="button" class="btn btn-secondary" onclick="Volver()" data-dismiss="modal">Regresar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="Bitacora" class="container tab-pane fade">
+                            <br>
+                            <h3>Lista de Llamadas Realizadas</h3>
+                            <div class='chat-activity-list' id="TableBitacoraOperations"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/WebTaquilla/Operaciones/InternationalMoneyOrderPayment.js" asp-append-version="true"></script>
+}

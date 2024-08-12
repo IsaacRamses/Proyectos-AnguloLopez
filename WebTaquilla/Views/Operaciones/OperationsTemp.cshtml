@@ -1,0 +1,85 @@
+﻿<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Operaciones Temporales</h2>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">
+                <strong>Operaciones Temporales</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget style1 lazur-bg">
+            Esta vista se cargan las operaciones temporales que no han sido procesadas
+        </div>
+    </div>
+</div>
+
+<div id="EntryOperation">
+    @Html.Hidden("User")
+    <div>
+        <div class="panel-body">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="table-responsive-lg">
+                        <div id="toolbar" class="fixed-table-toolbar">
+                            <div class="columns columns-right btn-group pull-right" role="form">
+                                <div class="btn-group">
+                                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                        <i class="glyphicon glyphicon-export"></i><span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="javascript:void(0)" onclick="ExportTable('excel', 'tblOperationsTemp', 'Detalle de Operaciones')">Excel</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="tblOperationsTemp"
+                               data-toggle="table"
+                               data-search="false"
+                               data-url=""
+                               data-page-size="5"
+                               data-page-list="[5, 10, 25, 50, 100, 200]"
+                               data-pagination="true"
+                               data-response-handler="responseHandler"
+                               data-advanced-search="true"
+                               data-id-table="advancedTable"
+                               data-show-footer="true"
+                               data-ajax=""
+                               class="table table-striped table-bordered table-responsive-lg">
+                            <thead>
+                                <tr>
+                                    <th data-field="Id" data-formatter="runningFormatter" data-sortable="true" data-halign="center" data-align="center">
+                                    </th>
+                                    <th data-field="FechaRegistro" data-formatter="convertDateTime" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                        Fecha
+                                    </th>
+                                    <th data-field="CICliente" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                        Numero Indetificación
+                                    </th>
+                                    <th data-field="Cliente" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                        Cliente
+                                    </th>
+                                    <th data-field="Tipo_Operacion" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                        Tipo Operación
+                                    </th>
+                                    <th data-field="Monto" data-formatter="formatCurrencyVE" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                        Monto
+                                    </th>
+                                    <th data-halign="center" data-align="center" data-formatter="operateFormatter" data-events="operateEvents">
+
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/WebTaquilla/Operaciones/OperationsTemp.js" asp-append-version="true"></script>
+}

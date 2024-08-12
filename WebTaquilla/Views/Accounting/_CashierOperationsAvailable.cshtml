@@ -1,0 +1,53 @@
+﻿ <div id="AvailableOperations">
+                <div id="InternationalMoneyOrderPayment">
+                <div class="panel-body">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div>
+                                <table id="TbCashierOperations"
+                                       data-toggle="table"
+                                       data-search="true"
+                                       data-show-refresh="true"
+                                       data-url=""
+                                       data-side-pagination="server"
+                                       data-response-handler="responseHandler"
+                                       data-advanced-search="true"
+                                       data-page-size="10"
+                                       data-single-select="true"
+                                       data-click-to-select="true"
+                                       data-id-table="advancedTable"
+                                       data-ajax=""
+                                       class="table table-striped table-bordered table-responsive-lg">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="state" data-checkbox="true"></th>
+                                            <th data-field="Id_OPERACION" data-sortable="true" data-halign="center" data-align="center">
+                                                Nro
+                                            </th>
+                                             <th data-field="NOMREM" data-sortable="true" data-formatter="ValidarCliente" data-halign="center" data-align="center">
+                                                Cliente
+                                            </th>
+                                            <th data-field="CIREM" data-sortable="true" data-formatter="ValidarDocumento" data-halign="center" data-align="center">
+                                                Número de Documento
+                                            </th>
+                                            <th data-field="DetalleOperacion" data-formatter="OperacionDescripcion" data-sortable="true" data-halign="center" data-align="center">
+                                                Operación
+                                            </th> 
+                                            <th data-field="Moneda" data-sortable="true"  data-halign="center" data-align="center">
+                                                Tipo Moneda
+                                            </th> 
+                                            <th data-field="Dolares" data-sortable="true" data-formatter="OperacionMontoRecibir"  data-halign="center" data-align="center">
+                                                Monto a Recibir
+                                            </th>     
+                                             <th data-field="Total_Cobrar" data-sortable="true" data-formatter="OperacionMontoPagar"  data-halign="center" data-align="center">
+                                                Monto a Entregar
+                                            </th>                                       
+                                        </tr>
+                                    </thead>                                
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>

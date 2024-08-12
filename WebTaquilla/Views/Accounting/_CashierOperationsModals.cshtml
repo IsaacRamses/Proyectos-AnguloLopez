@@ -1,0 +1,638 @@
+﻿<!-- Modal -->
+<div class="modal fade" style="z-index:2100 !important;" tabindex="-1" role="dialog" id="LoadControlDenomonation" aria-labelledby="LoadControlDenomonation" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                <h5 class="modal-title" id="exampleModalLabel">Control de Efectivo</h5>
+            </div>
+            <div class="modal-body" id="bodyModalControlDeno">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" disabled id="addCurrency_">Agregar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" style="z-index:2100 !important;" tabindex="-1" role="dialog" id="LoadControlDenomonationInClient" aria-labelledby="LoadControlDenomonation" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                <h5 class="modal-title" id="exampleModalLabel">Control de Efectivo</h5>
+            </div>
+            <div class="modal-body" id="bodyModalControlDenoInClient">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" disabled id="addCurrency_InClient">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="Confimacion" aria-labelledby="Confimacion" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+            </div>
+            @Html.Hidden("IdRemove")
+            @Html.Hidden("CashierSummaryId")
+            <div class="modal-body" id="bodyModalControlDeno">
+                <h1>¿Seguro que desea Eliminar?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="ConfirmRemove">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="Passes" role="dialog" aria-labelledby="Passes" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+            <h5 class="modal-title" id="exampleModalLabel">Detalle de Pase</h5>
+        </div>
+        @Html.Hidden("PassesId")
+        <div class="modal-body" id="bodyModalPasses">
+            <div id="">
+                    <div class="panel-body">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="table-responsive-lg">
+                                    <div id="toolbar" class="fixed-table-toolbar">
+                                        <div class="columns columns-right btn-group pull-right" role="form">
+                                            <div class="btn-group">
+                                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                                    <i class="glyphicon glyphicon-export"></i><span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="javascript:void(0)" onclick="ExportTable('excel', 'tblDetailPasses', 'Detalle de Pase')">Excel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="tblDetailPasses"
+                                           data-toggle="table"
+                                           data-search="false"
+                                           data-url=""
+                                           data-unique-id="VaultSummaryId"
+                                           data-sort-name="DenominacionTemp"
+                                           data-sort-order="asc"
+                                           data-page-size="10"
+                                           data-page-list="[5, 10, 25, 50, 100, 200]"
+                                           data-pagination="true"
+                                           data-response-handler="responseHandler"
+                                           data-advanced-search="true"
+                                           data-id-table="advancedTable"
+                                           data-show-footer="true"
+                                           data-ajax=""
+                                           class="table table-striped table-bordered table-responsive-lg">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="CURRENCY" data-sortable="true" data-halign="center" data-align="center">
+                                                    Moneda
+                                                </th>
+                                                <th data-field="TIPO_DENOMINACION" data-sortable="true" data-halign="center" data-align="center">
+                                                    Categoria
+                                                </th>
+                                                <th data-field="DENOMINACION" data-footer-formatter="idFormatter" data-sortable="true" data-halign="center" data-align="center">
+                                                    Denominación
+                                                </th>
+                                                <th data-field="CurrencyCode" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                                    Código
+                                                </th>
+                                                <th data-field="Quantity" data-footer-formatter="QuantityFormatter" data-sortable="true" data-halign="center" data-align="center">
+                                                    Cantidad
+                                                </th>
+                                                <th  data-formatter="FormatterTotal"  data-footer-formatter="TotalFormatter" data-sortable="true" data-halign="center" data-align="center">
+                                                    Total
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-danger" id="RejectPasses" onclick="ConfirmRejectPasses()">Rechazar</button>
+            <button type="button" class="btn btn-primary" id="ConfirmPasses" onclick="ApprovePasses()">Aprobar</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="ConfirmRejectPasses" aria-labelledby="ConfirmRejectPasses" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación de Rechazo</h5>
+            </div>
+            <div class="modal-body">
+                <h1>¿Seguro que desea Rechazar el Pase?</h1>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary Reject" onclick="RejectPasses()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Tabla Dar Cambio -->
+<div id="ModalTblGiveChangeOperation"  class="modal" style="display:none;">
+    <div id="OutputOperation" style="padding: 0% 18%;">
+                <div class="panel-body">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="table-responsive-lg">                            
+                                <table id="tblGiveChangeCashierSummary"
+                                       data-toggle="table"
+                                       data-search="false"
+                                       data-url=""
+                                       data-page-size="10"
+                                       data-unique-id="CashierSummaryId"
+                                       data-pagination="false"
+                                       data-response-handler="responseHandler"
+                                       data-advanced-search="true"
+                                       data-id-table="advancedTable"
+                                       data-show-footer="true"
+                                       data-ajax=""
+                                       class="table table-striped table-bordered table-responsive-lg">
+                                    <thead>
+                                        <tr>
+                                            <th data-halign="center" data-formatter="operateFormatterSelectCurrencyToChange" data-events="operateEventsSelectCurrency" data-align="center"></th>
+                                            <th data-field="Currency" data-sortable="true" data-halign="center" data-align="center">
+                                                Moneda
+                                            </th>
+                                            <th data-field="TIPO_DENOMINACION" data-sortable="true" data-halign="center" data-align="center">
+                                                Categoria
+                                            </th>
+                                            <th data-field="DenominacionName" data-sortable="true" data-halign="center" data-align="center">
+                                                Denominación
+                                            </th>
+                                            <th data-field="Quantity" data-sortable="true" data-halign="center" data-align="center">
+                                                Cantidad Disponible
+                                            </th>
+                                            <th data-field="Amount" data-formatter="formatCurrencyVE" data-sortable="true" data-halign="center" data-align="center">
+                                                Total
+                                            </th>
+                                          
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="form-row">                        
+                               <div class="form-group col-md-4 offset-4" style="text-align:center;">
+                                   <label for="" style="font-weight: bold;">Cambio a Dar</label>
+                                   <input id="InputAmountChange" class="form-control  " type="text" disabled style="font-weight: bold;" value="0"/>     
+                               </div>
+                               <div class="form-group col-md-2 offset-1" style="text-align: center;margin-top: auto;" >
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
+                               </div>         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  </div>
+
+  <!-- Modal de Tabla Entregar Efectivo -->
+<div id="ModalTblGiveCashOperation"  class="modal" @*style="display:none;"*@>
+    <div id="divOutputOperationPruchase" style="padding: 0% 18%;">
+                <div class="panel-body">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="table-responsive-lg">                            
+                                <table id="tblGiveCashCashierSummary"
+                                       data-toggle="table"
+                                       data-search="false"
+                                       data-url=""
+                                       data-page-size="10"
+                                       data-unique-id="CashierSummaryId"
+                                       data-pagination="false"
+                                       data-response-handler="responseHandler"
+                                       data-advanced-search="true"
+                                       data-id-table="advancedTable"
+                                       data-show-footer="true"
+                                       data-ajax=""
+                                       class="table table-striped table-bordered table-responsive-lg">
+                                    <thead>
+                                        <tr>
+                                            <th data-halign="center" data-formatter="operateFormatterSelectCurrencyToGivePurchase" data-events="operateEventsSelectCurrency" data-align="center"></th>
+                                            <th data-field="Currency" data-sortable="true" data-halign="center" data-align="center">
+                                                Moneda
+                                            </th>
+                                            <th data-field="TIPO_DENOMINACION" data-sortable="true" data-halign="center" data-align="center">
+                                                Categoria
+                                            </th>
+                                            <th data-field="DenominacionName" data-sortable="true" data-halign="center" data-align="center">
+                                                Denominación
+                                            </th>
+                                            <th data-field="Quantity" data-sortable="true" data-halign="center" data-align="center">
+                                                Cantidad Disponible
+                                            </th>
+                                            <th data-field="Amount" data-formatter="formatCurrencyVE" data-sortable="true" data-halign="center" data-align="center">
+                                                Total
+                                            </th>
+                                          
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="form-row">                        
+                          @*     <div class="form-group col-md-4 offset-4" style="text-align:center;">
+                                   <label for="" style="font-weight: bold;">Cambio a Dar</label>
+                                   <input id="InputAmountChange" class="form-control  " type="text" disabled style="font-weight: bold;" value="0"/>     
+                               </div>*@
+                               <div class="form-group col-md-2 offset-1" style="text-align: center;margin-top: auto;" >
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
+                               </div>         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" tabindex="-1" role="dialog" id="DetailCurrency" aria-labelledby="DetailCurrency" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+            </div>
+            <div class="modal-body">
+                 <div id="CurrencyDetail">
+                    <div class="panel-body">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="table-responsive-lg">
+                                    <div id="toolbar" class="fixed-table-toolbar">
+                                        <div class="columns columns-right btn-group pull-right" role="form">
+                                            <div class="btn-group">
+                                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button">
+                                                    <i class="glyphicon glyphicon-export"></i><span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="javascript:void(0)" onclick="ExportTable('excel', 'tblDetailCurrency', 'Detalle Pase')">Excel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table id="tblDetailCurrency"
+                                            data-toggle="table"
+                                            data-search="false"
+                                            data-url=""
+                                            data-unique-id="VaultSummaryId"
+                                            data-sort-name="DenominacionTemp"
+                                            data-sort-order="asc"
+                                            data-page-size="10"
+                                            data-page-list="[5, 10, 25, 50, 100, 200, All]"
+                                            data-pagination="true"
+                                            data-response-handler="responseHandler"
+                                            data-advanced-search="true"
+                                            data-id-table="advancedTable"
+                                            data-show-footer="true"
+                                            data-ajax=""
+                                            class="table table-striped table-bordered table-responsive-lg">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="id" data-formatter="runningFormatter" data-sortable="true" data-halign="center" data-align="center">
+                                                </th>
+                                                <th data-field="Currency" data-sortable="true" data-halign="center" data-align="center">
+                                                    Moneda
+                                                </th>
+                                                <th data-field="TIPO_DENOMINACION" data-sortable="true" data-halign="center" data-align="center">
+                                                    Categoria
+                                                </th>
+                                                <th data-field="DenominacionName" data-footer-formatter="idFormatter" data-sortable="true" data-halign="center" data-align="center">
+                                                    Denominación
+                                                </th>
+                                                <th data-field="CodeCurrencyTemp" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                                    Código
+                                                </th>
+                                                <th data-field="Quantity" data-footer-formatter="QuantityFormatter" data-sortable="true" data-halign="center" data-align="center">
+                                                    Cantidad
+                                                </th>
+                                                <th data-field="Totales" data-footer-formatter="TotalesFormatter" data-sortable="true" data-halign="center" data-align="center">
+                                                    Total
+                                                </th>
+                                                <th data-field="DenominationId" data-visible="false">ID</th> 
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Manual SweetAlert -->
+<div class="modal swal2-center swal2-backdrop-show" style="margin:10% 30%" id="modalAlertM" tabindex="-1" role="dialog">
+    <div aria-labelledby="swal2-title" aria-describedby="swal2-html-container" class="swal2-popup swal2-modal swal2-icon-success swal2-show" tabindex="-1" role="dialog" aria-live="assertive" aria-modal="true" style="display: grid;">
+        <button type="button" class="swal2-close" aria-label="Close this dialog" style="display: none;">×</button>
+        <ul class="swal2-progress-steps" style="display: none;"></ul>
+        <div class="swal2-icon swal2-warning swal2-icon-show" style="display: flex;">
+            <div class="swal2-icon-content">!</div>
+            <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+            <span class="swal2-success-line-tip"></span> <span class="swal2-success-line-long"></span>
+            <div class="swal2-success-ring"></div> <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+            <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+        </div>
+        <img class="swal2-image" style="display: none;">
+        <h2 class="swal2-title" id="swal2-titleAlert" style="display: block;">Good job!</h2>
+        <div class="swal2-html-container" id="swal2-html-containerAlert" style="display: block;">You clicked the button!</div>
+        <input class="swal2-input" style="display: none;">
+        <input type="file" class="swal2-file" style="display: none;">
+        <div class="swal2-range" style="display: none;">
+            <input type="range"><output></output></div>
+            <select class="swal2-select" style="display: none;"></select>
+            <div class="swal2-radio" style="display: none;"></div>
+            <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;">
+                <input type="checkbox"><span class="swal2-label"></span>
+                </label>
+                <textarea class="swal2-textarea" style="display: none;"></textarea>
+                <div class="swal2-validation-message" id="swal2-validation-message" style="display: none;">
+                </div>          
+            <div class="swal2-actions" style="display: flex;">
+            <div class="swal2-loader"></div>
+            <button type="button" class="swal2-confirm swal2-styled" aria-label="" data-dismiss="modal" style="display: inline-block;">OK</button>
+            <button type="button" class="swal2-deny swal2-styled" aria-label="" style="display: none;">No</button>
+            <button type="button" class="swal2-cancel swal2-styled" aria-label="" style="display: none;">Cancel</button>
+        </div>
+        <div class="swal2-footer" style="display: none;"></div>
+        <div class="swal2-timer-progress-bar-container">
+            <div class="swal2-timer-progress-bar" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+
+  <div id="ModalGiveChangeOperation" class="modal_dync" ></div>
+<div id="ModalReciveGiveChangeOperation" class="modal_dync" style="margin-top:-70%"></div>
+  <div id="ModalGiveCashPurchaseOperation" class="modal_dync" ></div>
+<div id="ModalGiveCashMixed" class="modal_dync"></div>
+  <div id="ModalAmonutGiveOperation" class="modal_Tabledync" ></div>
+  <div id="ModalOperations"></div>
+
+
+<div class="modal fade" tabindex="-1" style="margin-top: 4em;" role="dialog" id="ModalInCurrencyClient" aria-labelledby="DetailCurrency" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog  modal-lg" style="max-width: 65% !important;" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                </div>
+                <div class="modal-body">
+                <div id="divInCurrencyClient">
+                <form id="FormInCurrencyClient">
+                    <div class="form-row" id="divInCurrencyClientPay">
+                    <div class="col-md-4 mb-3" id="divTipoDenominacion">
+                     <label for="">Tipo de Denominación</label>
+                    <select asp-items="ViewBag.ListaTypeDenominations" id="TypeDenominations_InCurrencyClient" name="TypeDenominations_InCurrencyClient" class="form-control"></select>
+                    </div>
+                        <div class="col-md-4 mb-3" id="divDenominacion">
+                          <label for="">Denominaciones</label>
+                            <select id="denominations_InCurrencyClient" name="denominations_InCurrencyClient" class="form-control">
+                              <option value="">Seleccione</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3" id="divCantidad" >
+                            <label for="">Cantidad</label>
+                            <div class="input-group">
+                        <input type="text" class="form-control" maxlength="6" onfocus="onlyNumber(this.id)" id="Quanty_InCurrencyClient" name="Quanty_InCurrencyClient" placeholder="Cantidad">
+                                <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button" id="addInCurrencyClient">Agregar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </form>
+
+                <div>
+                    <div class="panel-body">
+                        <div class="ibox">
+                            <div class="ibox-content">
+                                <div class="table-responsive-lg">
+                                       <table id="tblInCurrencyClient"
+                                           data-toggle="table"
+                                           data-search="false"
+                                           data-url=""
+                                           data-unique-id="Id"
+                                           data-sort-name="DenominacionTemp"
+                                           data-sort-order="asc"
+                                           data-page-size="5"
+                                           data-page-list="[5, 10, 25, 50, 100, 200, All]"
+                                           data-pagination="true"
+                                           data-response-handler="responseHandler"
+                                           data-advanced-search="true"
+                                           data-id-table="advancedTable"
+                                           data-show-footer="true"
+                                           data-ajax=""
+                                           class="table table-striped table-bordered table-responsive-lg">
+                                        <thead>
+                                            <tr>                  
+                                                <th data-field="MonedaTemp"   data-halign="center" data-align="center" autocomplete="off">
+                                                    Moneda
+                                                </th>
+                                                <th data-field="TipoDenominacionTemp"  data-footer-formatter="idFormatterDif" data-halign="center" data-align="center" autocomplete="off">
+                                                    Categoria
+                                                </th>
+                                                <th data-field="DenominacionTemp"  data-halign="center" data-align="center" autocomplete="off">
+                                                    Denominación
+                                                </th>
+                                                <th data-field="Cantidad"   data-footer-formatter="idFormatter" data-halign="center" data-align="center" autocomplete="off">
+                                                    Cantidad
+                                                </th>
+                                                  <th data-field="CodeCurrencyTemp"  data-footer-formatter="priceFormatter_Purchase" data-sortable="true" data-halign="center" data-align="center" autocomplete="off">
+                                                    Código
+                                                </th>
+                                                    <th data-halign="center" data-align="center" data-formatter="operateFormatterRemoveInClient" data-events="operateEventsRemoveInClient">
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="GenerateCashier" onclick="GenerateCashier()">Registrar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<div class="modal fade" tabindex="-1" style="margin-top: 4em;" role="dialog" id="ModalPayDifOutMixed" aria-labelledby="DetailCurrency" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog  modal-lg" style="max-width: 65% !important;" role="document">
+        <div class="modal-content">
+                <div class="modal-header" style=" background-color: #23c6c8 !important; color: #ffffff;">
+                    <h5 class="modal-title" id="exampleModalLabel">Cargar Pago</h5>
+                </div>
+                <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-6 offset-3">
+                        <label for="">Método de Pago</label>
+                        <select asp-items="ViewBag.ListaTipoPagosGive" id="TipoPago_Mixed" name="TipoPago_Mixed" class="form-control"></select>
+                    </div>                  
+                </div>
+                <div id="divMethodMixedPay">
+                    <form id="FormMethodMixedPay">
+                        <div class="form-row" id="divCurrencyMixedPay">
+                            <div class="col-md-4" id="divListBancosMixed" style="display:none">
+                                <label for="">Bancos</label>
+                                <select id="ListBancos_Mixed" name="ListBancos_Mixed" class="form-control">
+                                    <option value="">Seleccione</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3" id="divNumTicketMixed" style="display:none">
+                                <label for="">Nro. Cuenta</label>
+                                <input id="NumCuenta_Mixed" name="NumCuenta_Mixed" onpaste="return false" onfocus="onlyNumber(this.id)" maxlength="20" autocomplete="off" type="text" class="form-control " />
+                            </div>
+                            <div class="col-md-4" id="divTelfMixed" style="display:none">
+                                <label for="">Nro. de Telefono</label>
+                                <input type="text" class="form-control" id="telphone_Mixed" onfocus="onlyNumber(this.id)" name="telphone_Mixed" placeholder="Telefono">
+                            </div>
+                            <div class="col-md-4 mb-3" id="divMontoMixed" style="display:none">
+                                <label for="">Monto</label>
+                                <div class="input-group">
+                                    <input id="Monto_Mixed" name="Monto_Mixed" autocomplete="off" type="text" class="form-control " disabled/>
+                                  <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button" onclick="ValidateCurrencyToMixedPay()" id="addCurrencyToMixedPay">Agregar</button>
+                                  </div>
+                                </div>
+                            </div>                    
+                        </div>
+                    </form>
+                </div>
+                <div id="divMethodMixedCurency" style="display:none">
+                    <div class="col-md-4 mb-3">
+                        <label for="">Monto</label>
+                        <input id="Monto_Mixed2" name="Monto_Mixed2" autocomplete="off" type="text" class="form-control " disabled />  
+                    </div>
+                                <div class="table-responsive-lg">
+                                    <table id="tblCurrencyToGiveMixed"
+                                           data-toggle="table"
+                                           data-search="false"
+                                           data-url=""
+                                           data-page-size="10"
+                                           data-unique-id="CashierSummaryId"
+                                           data-pagination="false"
+                                           data-response-handler="responseHandler"
+                                           data-advanced-search="true"
+                                           data-id-table="advancedTable"
+                                           data-show-footer="true"
+                                           data-ajax=""
+                                           class="table table-striped table-bordered table-responsive-lg">
+                                        <thead>
+                                            <tr>
+                                                <th data-halign="center" data-formatter="operateFormatterSelectCurrencyToGiveMixed" data-events="operateEventsSelectCurrency" data-align="center"></th>
+                                                <th data-field="Currency" data-sortable="true" data-halign="center" data-align="center">
+                                                    Moneda
+                                                </th>
+                                                <th data-field="TIPO_DENOMINACION" data-sortable="true" data-halign="center" data-align="center">
+                                                    Categoria
+                                                </th>
+                                                <th data-field="DenominacionName" data-sortable="true" data-halign="center" data-align="center">
+                                                    Denominación
+                                                </th>
+                                                <th data-field="Quantity" data-sortable="true" data-halign="center" data-align="center">
+                                                    Cantidad Disponible
+                                                </th>
+                                                <th data-field="Amount" data-formatter="formatCurrencyVE" data-sortable="true" data-halign="center" data-align="center">
+                                                    Total
+                                                </th>
+                                                <th data-field="QuantitySelect" data-sortable="true" data-footer-formatter="priceFormatterSelect" data-halign="center" data-align="center">
+                                                    Cantidad Seleccionada
+                                                </th>
+                                                <th data-halign="center" data-align="center" data-formatter="operateFormatterRemoveGiveMixed" data-events="operateEventsRemove">
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ModalTblReciveGiveChangeOperation"  class="modal" style="display:none;">
+    <div id="OutputOperation" style="padding: 0% 18%;">
+                <div class="panel-body">
+                    <div class="ibox">
+                        <div class="ibox-content">
+                            <div class="table-responsive-lg">                            
+                                <table id="tblReciveGiveChangeCashier"
+                                       data-toggle="table"
+                                       data-search="false"
+                                       data-url=""
+                                       data-page-size="10"
+                                       data-unique-id="CashierSummaryId"
+                                       data-pagination="false"
+                                       data-response-handler="responseHandler"
+                                       data-advanced-search="true"
+                                       data-id-table="advancedTable"
+                                       data-show-footer="true"
+                                       data-ajax=""
+                                       class="table table-striped table-bordered table-responsive-lg">
+                                    <thead>
+                                        <tr>
+                                            <th data-halign="center" data-formatter="operateFormatterSelectCurrencyReciveToChange" data-events="operateEventsSelectCurrency" data-align="center"></th>
+                                            <th data-field="Currency" data-sortable="true" data-halign="center" data-align="center">
+                                                Moneda
+                                            </th>
+                                            <th data-field="TIPO_DENOMINACION" data-sortable="true" data-halign="center" data-align="center">
+                                                Categoria
+                                            </th>
+                                            <th data-field="DenominacionName" data-sortable="true" data-halign="center" data-align="center">
+                                                Denominación
+                                            </th>
+                                            <th data-field="Quantity" data-sortable="true" data-halign="center" data-align="center">
+                                                Cantidad Disponible
+                                            </th>
+                                            <th data-field="Amount" data-formatter="formatCurrencyVE" data-sortable="true" data-halign="center" data-align="center">
+                                                Total
+                                            </th>
+                                          
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="form-row">                        
+                               <div class="form-group col-md-4 offset-4" style="text-align:center;">
+                                   <label for="" style="font-weight: bold;">Cambio a Dar</label>
+                                <input id="InputAmountReciveChange" class="form-control  " type="text" disabled style="font-weight: bold;" value="0" />
+                                </div>
+                               <div class="form-group col-md-2 offset-1" style="text-align: center;margin-top: auto;" >
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> 
+                               </div>         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  </div>

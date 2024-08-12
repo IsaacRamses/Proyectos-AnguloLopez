@@ -1,0 +1,50 @@
+﻿<div id="divPagoMixto" style="display:none;text-align: right; margin-right: 20px;">
+    <button class="btn btn-primary" type="button" id="btnAmuntGiveMixed">Añadir Dif Pago en Bs </button>
+</div>
+<div class="panel-body">
+                                <div class="ibox">
+                                    <div class="ibox-content">
+                                        <div class="table-responsive-lg">                          
+                                            <table id="tblCurrencyToGive"
+                                                   data-toggle="table"
+                                                   data-search="false"
+                                                   data-url=""
+                                                   data-page-size="10"
+                                                   data-unique-id="CashierSummaryId"
+                                                   data-pagination="false"
+                                                   data-response-handler="responseHandler"
+                                                   data-advanced-search="true"
+                                                   data-id-table="advancedTable"
+                                                   data-show-footer="true"
+                                                   data-ajax=""
+                                                   class="table table-striped table-bordered table-responsive-lg">
+                                                <thead>
+                                                    <tr>  
+                                                        <th data-halign="center" data-formatter="operateFormatterSelectCurrencyToGive" data-events="operateEventsSelectCurrency" data-align="center"></th>
+                                                        <th data-field="Currency" data-sortable="true" data-halign="center" data-align="center">
+                                                            Moneda
+                                                        </th>
+                                                        <th data-field="TIPO_DENOMINACION"  data-sortable="true" data-halign="center" data-align="center">
+                                                            Categoria
+                                                        </th>
+                                                        <th data-field="DenominacionName" data-footer-formatter="idFormatterDif"  data-sortable="true" data-halign="center" data-align="center">
+                                                            Denominación
+                                                        </th>
+                                                        <th data-field="Quantity" data-footer-formatter="priceFormatterGiveDif" data-sortable="true" data-halign="center" data-align="center">
+                                                            Cantidad Disponible
+                                                        </th>
+                                                        <th data-field="Amount" data-footer-formatter="idFormatter" data-formatter="formatCurrency"  data-sortable="true" data-halign="center" data-align="center">
+                                                            Total
+                                                        </th>
+                                                        <th data-field="QuantitySelect" data-sortable="true" data-footer-formatter="priceFormatterSelect" data-halign="center" data-align="center">
+                                                            Cantidad Seleccionada
+                                                        </th>
+                                                         <th data-halign="center" data-align="center" data-formatter="operateFormatterRemoveDenominations" data-events="operateEventsRemove">
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
